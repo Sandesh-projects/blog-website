@@ -77,7 +77,7 @@ To run this project locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/Sandesh-projects/blog-website
     ```
 2.  **Navigate to the project directory:**
     ```bash
