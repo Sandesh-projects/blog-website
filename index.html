@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Blog - Home</title>
+    <link rel="icon" href="https://icon-library.com/images/blogging-icon/blogging-icon-27.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="./assets/LogoBlog.png" alt="My Awesome Blog Logo" class="logo-image" height="100">
+                <span class="logo-text">Awesome Blog</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="create-post.html">Create Post</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to the Awesome Blog!</h1>
+                <p>Your daily dose of insights, stories, and tech adventures.</p>
+            </div>
+        </section>
+
+        <section class="blog-posts section-padding">
+            <div class="container">
+                <h2>Latest Posts</h2>
+                <div class="post-list" id="post-list">
+                    <p class="loading-message">Loading posts...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> My Awesome Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data/posts.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAndDisplayPosts();
+        });
+    </script>
+</body>
+
+</html>

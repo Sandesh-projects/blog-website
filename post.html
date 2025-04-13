@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - My Awesome Blog</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/logo.png" alt="My Awesome Blog Logo" class="logo-image">
+                <span class="logo-text">Awesome Blog</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="create-post.html">Create Post</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <article class="single-post section-padding">
+            <div class="container" id="single-post-content">
+                <p class="loading-message">Loading post details...</p>
+            </div>
+        </article>
+
+        <section class="comments-section section-padding">
+            <div class="container">
+                <h2>Comments</h2>
+                <div id="comments-list">
+                    <p class="no-comments">No comments yet. Be the first to comment!</p>
+                </div>
+
+                <h3>Leave a Comment</h3>
+                <form id="comment-form" class="styled-form">
+                    <input type="hidden" id="post-id-hidden" name="post-id">
+                    <div class="form-group">
+                        <label for="comment-name">Name:</label>
+                        <input type="text" id="comment-name" name="comment-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-message">Comment:</label>
+                        <textarea id="comment-message" name="comment-message" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    </div>
+                    <p id="comment-success-message" class="success-message" style="display: none;">Comment submitted!
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> My Awesome Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data/posts.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/comments.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const postId = getCurrentPostId();
+            if (postId) {
+                loadAndDisplaySinglePost(postId);
+                loadAndDisplayComments(postId);
+                setupCommentForm(postId);
+            } else {
+                const postContent = document.getElementById('single-post-content');
+                if (postContent) {
+                    postContent.innerHTML = '<p class="error-message">Error: Post not found. Please return to the <a href="index.html">homepage</a>.</p>';
+                }
+                const commentsSection = document.querySelector('.comments-section');
+                if (commentsSection) commentsSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
